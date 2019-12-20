@@ -1,0 +1,82 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fetch Test</title>
+
+<style>
+body{
+	text-align: center;
+    background: navy;
+    color: #fff;
+}
+select {
+    width: 120px;
+    height: 35px;
+    font-size: 20px;
+}
+p {
+	font-size: 20px
+}
+</style>
+</head>
+
+<body>
+<h1>fetch JSON</h1>
+<h2>中央氣象局開放資料平臺之資料擷取API</h2>
+
+<!-- <img src="" alt="photo">
+<p id="name">John Snow</p>
+<p>city: <span id="city">Taipei</span></p>
+<button>change User</button> -->
+<label></label>
+<select id="location" name="location">
+	<option id="#" value="#"></option>
+</select>
+
+<p id="desc"></p>
+<p id="degree"></p>
+
+<script>
+// fectch
+var url="fake-info.json";
+// // var tag="baby";
+// // var url="https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=955f39adf634c73346b88b7ec8e4d50a&tags="+ tag +"&format=json&nojsoncallback=1&api_sig=0dca73ade869d342558eefa9935da12e";
+// keyCWB-5740FC70-095E-4152-B9D0-9F8CD9EEFCC2
+var url="https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-5740FC70-095E-4152-B9D0-9F8CD9EEFCC2";
+    fetch(url)
+    .then(function(res){
+        if(!res.ok){
+            throw Error("res.status");
+        }
+        return res.json();
+        })
+    .then(function(data){
+    	console.log(data.records.location);
+    	var option=document.querySelector("option");
+		for(var i=0; i<data.records.location.length; i++){
+			var cln=option.cloneNode(true);
+			cln.innerText=data.records.location[i].locationName;
+			
+			document.querySelector("select").appendChild(cln);
+		}
+			document.querySelectorAll("option")[0].remove();
+			document.querySelector("select").addEventListener("change", function(){
+				console.log(this.selectedIndex);
+				document.querySelector("#desc").innerText=data.records.location[this.selectedIndex].weatherElement[0].time[0].parameter.parameterName;
+				document.querySelector("#degree").innerHTML=data.records.location[this.selectedIndex].weatherElement[4].time[0].parameter.parameterName+"&#8451;";
+			})
+    document.querySelectorAll("option")[1].selected=true;	
+    				document.querySelector("#desc").innerText=data.records.location[1].weatherElement[0].time[0].parameter.parameterName;
+				document.querySelector("#degree").innerHTML=data.records.location[1].weatherElement[4].time[0].parameter.parameterName+"&#8451;";
+         })
+    .then(function(data){
+    })
+    .catch(function(err){
+        console.log(err);
+        })
+</script>
+
+</body>
+</html>
