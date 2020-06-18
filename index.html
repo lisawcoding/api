@@ -110,6 +110,7 @@ body{
 <!-- <select id="location" name="location">
 	<option id="#" value="#"></option>
 </select> -->
+<p>現在時間：<span class="time"></span></p>
 
 <div class="select-box">
     <p class="select" data-location=""></p>
@@ -199,6 +200,11 @@ document.querySelector(".select-box").addEventListener("click", function(){
     }
 })
 
+
+setInterval(()=>{
+    var date=new Date().toLocaleString();
+    document.querySelector('.time').innerText=date;
+}, 1000)
 </script>
 
 </body>
