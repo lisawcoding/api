@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +10,7 @@
       name="description"
       content="weather forcast website, 天氣預測網站"
     />
-
+    
     <title>Fetch Test</title>
 
 <style>
@@ -119,7 +118,6 @@ body{
 <!-- <select id="location" name="location">
 	<option id="#" value="#"></option>
 </select> -->
-<p>現在時間：<span class="time"></span></p>
 
 <div class="select-box">
     <p class="select" data-location=""></p>
@@ -136,7 +134,7 @@ body{
 let options=document.querySelector(".options");
 let select=document.querySelector(".select");
 let overlay=document.querySelector(".overlay");
-	
+
 var url="https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-5740FC70-095E-4152-B9D0-9F8CD9EEFCC2";
     fetch(url)
     .then(function(res){
@@ -152,7 +150,7 @@ var url="https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authoriza
 	// 	for(var i=0; i<data.records.location.length; i++){
 	// 		var cln=option.cloneNode(true);
 	// 		cln.innerText=data.records.location[i].locationName;
-			
+
 	// 		document.querySelector("select").appendChild(cln);
 	// 	}
 	// 		document.querySelectorAll("option")[0].remove();
@@ -209,11 +207,6 @@ document.querySelector(".select-box").addEventListener("click", function(){
     }
 })
 
-
-setInterval(()=>{
-    var date=new Date().toLocaleString();
-    document.querySelector('.time').innerText=date;
-}, 1000)
 </script>
 
 </body>
